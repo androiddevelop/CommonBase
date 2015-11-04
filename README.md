@@ -4,14 +4,14 @@
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.0.2'
+    compile 'me.codeboy.common:base:1.0.3'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.0.2</version>
+         <version>1.0.3</version>
      </dependency>
 
 ##  JavaDoc
@@ -19,15 +19,16 @@
 [http://doc.codeboy.me/Base/](http://doc.codeboy.me/Base/)
 
 ## 类的说明(后续不断增加)
-- CBFileUtil 
+
+- CBFile
 
         文件操作。读取，写入等
 
-- CBHttpsUtil
+- CBHttps
     
         https请求，get,post
 
-- CBHttpUtil
+- CBHttp
 
         http请求，get,post
 
@@ -38,7 +39,7 @@
 
         md5 sha 加密
 
-- CBLogUtil
+- CBLog
 
         日志打印
 
