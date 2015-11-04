@@ -4,7 +4,7 @@ import java.util.*;
 import java.util.Map.Entry;
 
 /**
- * 按照键值对中的值排序的TreeMap
+ * 按照键值对中 值排序 TreeMap
  *
  * @param <K>
  *         键值对对应键
@@ -21,8 +21,8 @@ public class CBMapSortUtil<K, V> {
      * 按照Map中key进行升序排列
      *
      * @param sourceMap
-     *         要排序的map
-     * @return 排序后的map
+     *         要排序 map
+     * @return 排序后 map
      */
     public Map<K, V> getMapSortByValueUp(Map<K, V> sourceMap) {
         return sortByValue(sourceMap, GROW_UP);
@@ -32,8 +32,8 @@ public class CBMapSortUtil<K, V> {
      * 按照Map中key进行降序排列
      *
      * @param sourceMap
-     *         要排序的map
-     * @return 排序后的map
+     *         要排序 map
+     * @return 排序后 map
      */
     public Map<K, V> getMapSortByValueDown(Map<K, V> sourceMap) {
         return sortByValue(sourceMap, GROW_DOWN);
@@ -43,8 +43,8 @@ public class CBMapSortUtil<K, V> {
      * 按照Map中value进行升序排列
      *
      * @param sourceMap
-     *         要排序的map
-     * @return 排序后的map
+     *         要排序 map
+     * @return 排序后 map
      */
     public Map<K, V> getMapSortByKeyUp(Map<K, V> sourceMap) {
         return sortByKey(sourceMap, GROW_UP);
@@ -54,8 +54,8 @@ public class CBMapSortUtil<K, V> {
      * 按照Map中value进行降序排列
      *
      * @param sourceMap
-     *         要排序的map
-     * @return 排序后的map
+     *         要排序 map
+     * @return 排序后 map
      */
     public Map<K, V> getMapSortByKeyDown(Map<K, V> sourceMap) {
         return sortByKey(sourceMap, GROW_DOWN);
@@ -65,10 +65,10 @@ public class CBMapSortUtil<K, V> {
      * 根据map中key进行排序
      *
      * @param sourceMap
-     *         要排序的map
+     *         要排序 map
      * @param growthPattern
      *         排序规则，升序或者降序
-     * @return 排序后的map
+     * @return 排序后 map
      */
     private Map<K, V> sortByKey(Map<K, V> sourceMap, final int growthPattern) {
         List<Entry<K, V>> list = new ArrayList<Entry<K, V>>(
@@ -95,10 +95,10 @@ public class CBMapSortUtil<K, V> {
      * 根据map中value进行排序
      *
      * @param sourceMap
-     *         要排序的map
+     *         要排序 map
      * @param growthPattern
      *         排序规则，升序或者降序
-     * @return 排序后的map
+     * @return 排序后 map
      */
     private Map<K, V> sortByValue(Map<K, V> sourceMap, final int growthPattern) {
         List<Entry<K, V>> list = new ArrayList<Entry<K, V>>(
@@ -122,7 +122,8 @@ public class CBMapSortUtil<K, V> {
     }
 
     /**
-     * 对键值对中值进行比较,只针对6种基本类型，short int long float double String，其他的一律返回相等
+     * 对键值对中值进行比较,只针对6种基本类型，short int long float double char,
+     * 其他一律返回相等
      *
      * @param v1
      *         值1

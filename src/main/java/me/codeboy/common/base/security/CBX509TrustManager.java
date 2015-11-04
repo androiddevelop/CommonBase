@@ -21,8 +21,6 @@ public class CBX509TrustManager implements X509TrustManager {
 	@Override
 	public void checkServerTrusted(X509Certificate[] arg0, String arg1)
 			throws CertificateException {
-		// System.out.println("cert: " + arg0[0].toString() + ", authType: "
-		// + arg1);
 	}
 
 	@Override
