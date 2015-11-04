@@ -2,7 +2,7 @@ package me.codeboy.common.base.example;
 
 import me.codeboy.common.base.net.CBHttps;
 import me.codeboy.common.base.security.CBBase64;
-import me.codeboy.common.base.util.CBLogUtil;
+import me.codeboy.common.base.log.CBLog;
 import me.codeboy.common.base.util.CBStringUtil;
 
 import java.io.IOException;
@@ -25,9 +25,9 @@ public class TestExample {
     public void testBase64() {
         String str = "小胖轩(codeboy.me)";
         String tmp = CBBase64.encode(str);
-        CBLogUtil.print(tmp);
+        CBLog.print(tmp);
         try {
-            CBLogUtil.print(CBBase64.decode(tmp));
+            CBLog.print(CBBase64.decode(tmp));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -39,7 +39,7 @@ public class TestExample {
     public void testHttps() {
         String url = "https://kyfw.12306.cn/otn/leftTicket/init";
         try {
-            CBLogUtil.print(new CBHttps().get(url));
+            CBLog.print(new CBHttps().get(url));
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -50,10 +50,10 @@ public class TestExample {
      * 版本比较
      */
     public void testVersionUtil() {
-        CBLogUtil.print(CBStringUtil.versionCompareAndHasANewVersion("1.1.2", "1.2.1"));
-        CBLogUtil.print(CBStringUtil.versionCompareAndHasANewVersion("1.1.2", "1.1.2"));
-        CBLogUtil.print(CBStringUtil.versionCompareAndHasANewVersion("1.1.2", "1.1.2.1"));
-        CBLogUtil.print(CBStringUtil.versionCompareAndHasANewVersion("1.10.2", "1.2.1.1"));
-        CBLogUtil.print(CBStringUtil.versionCompareAndHasANewVersion("1.10.2", "1.1.1"));
+        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.1.2", "1.2.1"));
+        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.1.2", "1.1.2"));
+        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.1.2", "1.1.2.1"));
+        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.10.2", "1.2.1.1"));
+        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.10.2", "1.1.1"));
     }
 }
