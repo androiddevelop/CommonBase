@@ -1,40 +1,17 @@
 package me.codeboy.common.base.net;
 
-import me.codeboy.common.base.security.CBHostnameVerifier;
-import me.codeboy.common.base.security.CBX509TrustManager;
-
-import javax.net.ssl.HttpsURLConnection;
-import javax.net.ssl.SSLContext;
-import javax.net.ssl.X509TrustManager;
 import java.io.*;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.net.URLConnection;
-import java.security.GeneralSecurityException;
 import java.util.Map;
 
 /**
- * 网络https操作，可以获取网页源代码，下载网络文件
+ * 网络操作，可以获取网页源代码，下载网络文件
  *
  * @author Yuedong Li
  */
-public class CBHttpsUtil {
-    static {
-        SSLContext sslContext = null;
-        try {
-            sslContext = SSLContext.getInstance("SSL");
-            X509TrustManager[] xtmArray = new X509TrustManager[]{new CBX509TrustManager()};
-            sslContext.init(null, xtmArray, new java.security.SecureRandom());
-        } catch (GeneralSecurityException e) {
-            e.printStackTrace();
-        }
-        if (sslContext != null) {
-            HttpsURLConnection.setDefaultSSLSocketFactory(sslContext
-                    .getSocketFactory());
-        }
-        HttpsURLConnection
-                .setDefaultHostnameVerifier(new CBHostnameVerifier());
-    }
+public class CBHttp {
 
     /**
      * 得到网络地址对应的字符串，也即得到网页源代码
@@ -88,7 +65,7 @@ public class CBHttpsUtil {
      *         IO异常
      */
     public String post(String address, String... params) throws IOException {
-        return post(address, "UTF-8", paramsToString(params));
+        return post(address, "UTF-8", CBNetParam.paramsToString(params));
     }
 
     /**
@@ -106,7 +83,7 @@ public class CBHttpsUtil {
      */
     public String post(String address, String encoding, String... params)
             throws IOException {
-        return post(address, encoding, paramsToString(params));
+        return post(address, encoding, CBNetParam.paramsToString(params));
     }
 
     /**
@@ -122,7 +99,7 @@ public class CBHttpsUtil {
      */
     public String post(String address, Map<String, String> params)
             throws IOException {
-        return post(address, "UTF-8", paramsToString(params));
+        return post(address, "UTF-8", CBNetParam.paramsToString(params));
     }
 
     /**
@@ -140,7 +117,7 @@ public class CBHttpsUtil {
      */
     public String post(String address, String encoding,
                        Map<String, String> params) throws IOException {
-        return post(address, encoding, paramsToString(params));
+        return post(address, encoding, CBNetParam.paramsToString(params));
 
     }
 
@@ -157,14 +134,14 @@ public class CBHttpsUtil {
      * @throws IOException
      *         IO异常
      */
-    public String post(String address, String encoding, String paramsString)
+    public String post(String address, String encoding, String params)
             throws IOException {
         StringBuffer netString = new StringBuffer();
         URL url = new URL(address);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
         conn.setDoOutput(true);
-        conn.getOutputStream().write(paramsString.getBytes(encoding));
+        conn.getOutputStream().write(params.getBytes(encoding));
         BufferedReader buff = new BufferedReader(new InputStreamReader(
                 conn.getInputStream(), encoding));
         String line;
@@ -174,42 +151,6 @@ public class CBHttpsUtil {
         }
         buff.close();
         return netString.substring(1);
-    }
-
-    /**
-     * convert parameters to string
-     *
-     * @param params
-     *         parameter
-     * @return 拼接后的字符串
-     */
-    private String paramsToString(String... params) {
-        StringBuffer sb = new StringBuffer();
-        for (int i = 0; i < params.length - 1; i = i + 1) {
-            sb.append("&");
-            sb.append(params[i]);
-            sb.append("=");
-            sb.append(params[i + 1]);
-        }
-        return sb.substring(1);
-    }
-
-    /**
-     * convert parameters to string
-     *
-     * @param params
-     *         parameter
-     * @return 拼接后的字符串
-     */
-    private String paramsToString(Map<String, String> params) {
-        StringBuffer sb = new StringBuffer();
-        for (Map.Entry<String, String> item : params.entrySet()) {
-            sb.append("&");
-            sb.append(item.getKey());
-            sb.append("=");
-            sb.append(item.getValue());
-        }
-        return sb.substring(1);
     }
 
     /**
