@@ -2,8 +2,21 @@
 
 ## 引入方式
 
-    compile 'me.codeboy.common:base:1.0.1'
+#### gradle
 
+    compile 'me.codeboy.common:base:1.0.2'
+    
+#### maven 
+        
+     <dependency>
+         <groupId>me.codeboy.common</groupId>
+         <artifactId>base</artifactId>
+         <version>1.0.2</version>
+     </dependency>
+
+##  JavaDoc
+
+[http://doc.codeboy.me/Base/](http://doc.codeboy.me/Base/)
 
 ## 类的说明(后续不断增加)
 - CBFileUtil 
