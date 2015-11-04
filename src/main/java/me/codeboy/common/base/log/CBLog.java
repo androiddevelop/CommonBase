@@ -1,11 +1,11 @@
-package me.codeboy.common.base.util;
+package me.codeboy.common.base.log;
 
 /**
  * 日志工具
  *
  * @author Yuedong Li
  */
-public class CBLogUtil {
+public class CBLog {
     private static boolean ONOFF = false; //默认不打印
 
     /**
