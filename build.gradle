@@ -9,16 +9,12 @@ plugins {
 }
 
 group 'me.codeboy.common'
-version '1.0.1'
+version '1.0.2'
 
-allprojects {
-    repositories {
-        jcenter()
-    }
-    apply plugin: 'maven'
-    apply plugin: 'maven-publish'
-    apply plugin: 'java'
-}
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+apply plugin: 'java'
+
 
 def siteUrl = 'https://github.com/androiddevelop/CommonBase'
 def issueUrl = 'https://github.com/androiddevelop/CommonBase/issues'
@@ -89,7 +85,7 @@ bintray {
         publicDownloadNumbers = true
         publish = true
         version {
-            name = "1.0.1"
+            name = "1.0.2"
             gpg {
                 sign = true
                 passphrase = properties.getProperty("bintray.gpg.password")
