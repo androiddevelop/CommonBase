@@ -1,5 +1,6 @@
 package me.codeboy.common.base.example;
 
+import me.codeboy.common.base.net.CBHttp;
 import me.codeboy.common.base.net.CBHttps;
 import me.codeboy.common.base.security.CBBase64;
 import me.codeboy.common.base.log.CBLog;
@@ -14,9 +15,10 @@ import java.io.IOException;
 public class TestExample {
 
     public static void main(String[] args) {
-        // new TestExample().testBase64();
-        // new TestExample().testHttps();
-        new TestExample().testVersionUtil();
+//         new TestExample().testBase64();
+//         new TestExample().testHttps();
+        new TestExample().testHttp();
+//        new TestExample().testVersionUtil();
     }
 
     /**
@@ -40,6 +42,18 @@ public class TestExample {
         String url = "https://kyfw.12306.cn/otn/leftTicket/init";
         try {
             CBLog.print(new CBHttps().get(url));
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    /**
+     * 测试http
+     */
+    public void testHttp() {
+        String url = "http://codeboy.me";
+        try {
+            CBLog.print(new CBHttp().addDefaultMobileUserAgent().get(url, "UTF-8"));
         } catch (IOException e) {
             e.printStackTrace();
         }

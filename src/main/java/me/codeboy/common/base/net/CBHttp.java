@@ -11,20 +11,10 @@ import java.util.Map;
  *
  * @author Yuedong Li
  */
-public class CBHttp {
+public class CBHttp extends CBNetRequest {
+    private String userAgent; //用户代理
+    private Map<String, String> header; //头部
 
-    /**
-     * 得到网络地址对应的字符串，也即得到网页源代码
-     *
-     * @param address
-     *         网址
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
-    public String get(String address) throws IOException {
-        return get(address, "UTF-8");
-    }
 
     /**
      * 按照指定编码得到网络地址对应的字符串，也即得到网页源代码
@@ -37,11 +27,17 @@ public class CBHttp {
      * @throws IOException
      *         IO异常
      */
+    @Override
     public String get(String address, String encoding) throws IOException {
         StringBuffer netString = new StringBuffer();
         URL url = new URL(address);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
+
+        //设置请求头部及代理
+        insertRequestHeader(conn);
+        insertUserAgent(conn);
+
         BufferedReader buff = new BufferedReader(new InputStreamReader(
                 conn.getInputStream(), encoding));
         String line;
@@ -53,20 +49,6 @@ public class CBHttp {
         return netString.substring(1);
     }
 
-    /**
-     * 按照指定编码得到网络地址对应的字符串
-     *
-     * @param address
-     *         网址
-     * @param params
-     *         参数
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
-    public String post(String address, String... params) throws IOException {
-        return post(address, "UTF-8", CBNetParam.paramsToString(params));
-    }
 
     /**
      * 按照指定编码得到网络地址对应的字符串
@@ -81,65 +63,22 @@ public class CBHttp {
      * @throws IOException
      *         IO异常
      */
-    public String post(String address, String encoding, String... params)
-            throws IOException {
-        return post(address, encoding, CBNetParam.paramsToString(params));
-    }
-
-    /**
-     * 按照指定编码得到网络地址对应的字符串
-     *
-     * @param address
-     *         网址
-     * @param params
-     *         参数
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
-    public String post(String address, Map<String, String> params)
-            throws IOException {
-        return post(address, "UTF-8", CBNetParam.paramsToString(params));
-    }
-
-    /**
-     * 按照指定编码得到网络地址对应的字符串
-     *
-     * @param address
-     *         网址
-     * @param encoding
-     *         编码
-     * @param params
-     *         参数
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
-    public String post(String address, String encoding,
-                       Map<String, String> params) throws IOException {
-        return post(address, encoding, CBNetParam.paramsToString(params));
-
-    }
-
-    /**
-     * 按照指定编码得到网络地址对应的字符串
-     *
-     * @param address
-     *         网址
-     * @param encoding
-     *         编码
-     * @param params
-     *         参数
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
+    @Override
     public String post(String address, String encoding, String params)
             throws IOException {
         StringBuffer netString = new StringBuffer();
         URL url = new URL(address);
         HttpURLConnection conn = (HttpURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
+
+        //设置请求头部及代理
+        insertRequestHeader(conn);
+        insertUserAgent(conn);
+
+        if (userAgent != null) {
+            conn.setRequestProperty("User-Agent", userAgent);
+        }
+
         conn.setDoOutput(true);
         conn.getOutputStream().write(params.getBytes(encoding));
         BufferedReader buff = new BufferedReader(new InputStreamReader(
@@ -163,6 +102,7 @@ public class CBHttp {
      * @throws IOException
      *         IO异常
      */
+    @Override
     public void saveNetworkFile(String address, String filePath)
             throws IOException {
         URL url = new URL(address);

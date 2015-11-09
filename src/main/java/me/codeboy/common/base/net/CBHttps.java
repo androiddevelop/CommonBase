@@ -9,14 +9,13 @@ import javax.net.ssl.X509TrustManager;
 import java.io.*;
 import java.net.URL;
 import java.security.GeneralSecurityException;
-import java.util.Map;
 
 /**
  * 网络https操作，可以获取网页源代码，下载网络文件
  *
  * @author Yuedong Li
  */
-public class CBHttps {
+public class CBHttps extends CBNetRequest {
     static {
         SSLContext sslContext = null;
         try {
@@ -34,18 +33,6 @@ public class CBHttps {
                 .setDefaultHostnameVerifier(new CBHostnameVerifier());
     }
 
-    /**
-     * 得到网络地址对应字符串，也即得到网页源代码
-     *
-     * @param address
-     *         网址
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
-    public String get(String address) throws IOException {
-        return get(address, "UTF-8");
-    }
 
     /**
      * 按照指定编 得到网络地址对应字符串，也即得到网页源代
@@ -58,11 +45,17 @@ public class CBHttps {
      * @throws IOException
      *         IO异常
      */
+    @Override
     public String get(String address, String encoding) throws IOException {
         StringBuffer netString = new StringBuffer();
         URL url = new URL(address);
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         conn.setRequestMethod("GET");
+
+        //设置请求头部及代理
+        insertRequestHeader(conn);
+        insertUserAgent(conn);
+
         BufferedReader buff = new BufferedReader(new InputStreamReader(
                 conn.getInputStream(), encoding));
         String line;
@@ -79,21 +72,6 @@ public class CBHttps {
      *
      * @param address
      *         网址
-     * @param params
-     *         参数
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
-    public String post(String address, String... params) throws IOException {
-        return post(address, "UTF-8", CBNetParam.paramsToString(params));
-    }
-
-    /**
-     * 按照指定编 得到网络地址对应字符串
-     *
-     * @param address
-     *         网址
      * @param encoding
      *         编码
      * @param params
@@ -102,65 +80,18 @@ public class CBHttps {
      * @throws IOException
      *         IO异常
      */
-    public String post(String address, String encoding, String... params)
-            throws IOException {
-        return post(address, encoding, CBNetParam.paramsToString(params));
-    }
-
-    /**
-     * 按照指定编得到网络地址对应字符串
-     *
-     * @param address
-     *         网址
-     * @param params
-     *         参数
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
-    public String post(String address, Map<String, String> params)
-            throws IOException {
-        return post(address, "UTF-8", CBNetParam.paramsToString(params));
-    }
-
-    /**
-     * 按照指定编 得到网络地址对应字符串
-     *
-     * @param address
-     *         网址
-     * @param encoding
-     *         编码
-     * @param params
-     *         参数
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
-    public String post(String address, String encoding,
-                       Map<String, String> params) throws IOException {
-        return post(address, encoding, CBNetParam.paramsToString(params));
-
-    }
-
-    /**
-     * 按照指定编 得到网络地址对应字符串
-     *
-     * @param address
-     *         网址
-     * @param encoding
-     *         编码
-     * @param params
-     *         参数
-     * @return 网页源代码
-     * @throws IOException
-     *         IO异常
-     */
+    @Override
     public String post(String address, String encoding, String params)
             throws IOException {
         StringBuffer netString = new StringBuffer();
         URL url = new URL(address);
         HttpsURLConnection conn = (HttpsURLConnection) url.openConnection();
         conn.setRequestMethod("POST");
+
+        //设置请求头部及代理
+        insertRequestHeader(conn);
+        insertUserAgent(conn);
+
         conn.setDoOutput(true);
         conn.getOutputStream().write(params.getBytes(encoding));
         BufferedReader buff = new BufferedReader(new InputStreamReader(
@@ -184,6 +115,7 @@ public class CBHttps {
      * @throws IOException
      *         IO异常
      */
+    @Override
     public void saveNetworkFile(String address, String filePath)
             throws IOException {
         URL url = new URL(address);
