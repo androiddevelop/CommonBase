@@ -1,10 +1,11 @@
 package me.codeboy.common.base.example;
 
+import me.codeboy.common.base.log.CBLog;
 import me.codeboy.common.base.net.CBHttp;
 import me.codeboy.common.base.net.CBHttps;
+import me.codeboy.common.base.net.constant.CBMethod;
 import me.codeboy.common.base.security.CBBase64;
-import me.codeboy.common.base.log.CBLog;
-import me.codeboy.common.base.util.CBStringUtil;
+import me.codeboy.common.base.util.CBVersionUtil;
 
 import java.io.IOException;
 
@@ -41,7 +42,7 @@ public class TestExample {
     public void testHttps() {
         String url = "https://kyfw.12306.cn/otn/leftTicket/init";
         try {
-            CBLog.print(new CBHttps().get(url));
+            CBLog.print(CBHttps.getInstance().connect(url).execute());
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -53,7 +54,8 @@ public class TestExample {
     public void testHttp() {
         String url = "http://codeboy.me";
         try {
-            CBLog.print(new CBHttp().addDefaultMobileUserAgent().get(url, "UTF-8"));
+            String abc = CBHttp.getInstance().connect(url).execute();
+            CBLog.print(abc);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -64,10 +66,10 @@ public class TestExample {
      * 版本比较
      */
     public void testVersionUtil() {
-        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.1.2", "1.2.1"));
-        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.1.2", "1.1.2"));
-        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.1.2", "1.1.2.1"));
-        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.10.2", "1.2.1.1"));
-        CBLog.print(CBStringUtil.versionCompareAndHasANewVersion("1.10.2", "1.1.1"));
+        CBLog.print(CBVersionUtil.versionCompareAndHasANewVersion("1.1.2", "1.2.1"));
+        CBLog.print(CBVersionUtil.versionCompareAndHasANewVersion("1.1.2", "1.1.2"));
+        CBLog.print(CBVersionUtil.versionCompareAndHasANewVersion("1.1.2", "1.1.2.1"));
+        CBLog.print(CBVersionUtil.versionCompareAndHasANewVersion("1.10.2", "1.2.1.1"));
+        CBLog.print(CBVersionUtil.versionCompareAndHasANewVersion("1.10.2", "1.1.1"));
     }
 }
