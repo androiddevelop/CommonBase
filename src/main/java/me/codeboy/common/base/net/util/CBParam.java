@@ -1,11 +1,12 @@
-package me.codeboy.common.base.net;
+package me.codeboy.common.base.net.util;
 
 import java.util.Map;
 
 /**
+ * 参数转换
  * Created by yuedong on 11/3/15.
  */
-public class CBNetParam {
+public class CBParam {
     /**
      * convert parameters to string
      *
