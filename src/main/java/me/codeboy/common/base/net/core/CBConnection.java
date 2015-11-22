@@ -61,8 +61,10 @@ abstract public class CBConnection {
      * 设置编码
      *
      * @param charset
-     *         编码
+     *         编码,默认编码UTF-8
      * @return 连接
+     *
+     * @see CBDefaultConfig
      */
     public CBConnection charset(String charset) {
         this.charset = charset;
@@ -73,8 +75,11 @@ abstract public class CBConnection {
      * 请求方法
      *
      * @param method
-     *         方法
+     *         方法,默认GET
      * @return 连接
+     *
+     * @see CBMethod
+     * @see CBDefaultConfig
      */
     public CBConnection method(CBMethod method) {
         this.method = method;
@@ -109,8 +114,10 @@ abstract public class CBConnection {
      * 设置请求连接与读取的超时时间
      *
      * @param timeout
-     *         时间,单位毫秒
+     *         时间,单位毫秒,默认30s
      * @return 连接
+     *
+     * @see CBDefaultConfig
      */
     public CBConnection timeout(int timeout) {
         this.timeout = timeout;
@@ -156,7 +163,7 @@ abstract public class CBConnection {
     /**
      * 添加默认PC代理(osx)
      *
-     * @return CBConnection
+     * @return 连接
      */
     public CBConnection addDefaultPcUserAgent() {
         header.put(CBHeader.USER_AGENT, CBDefaultConfig.PC_UA);
@@ -166,7 +173,7 @@ abstract public class CBConnection {
     /**
      * 添加默认手机代理(android)
      *
-     * @return CBConnection
+     * @return 连接
      */
     public CBConnection addDefaultMobileUserAgent() {
         header.put(CBHeader.USER_AGENT, CBDefaultConfig.MOBILE_UA);
@@ -325,7 +332,7 @@ abstract public class CBConnection {
 
     /**
      * 参数重置
-     * 其中charset,timeout,cookie,keepSession不进行重置
+     * 其中timeout,cookie,keepSession不进行重置
      *
      * @return 连接
      */
@@ -333,6 +340,7 @@ abstract public class CBConnection {
         url = null;
         method = CBDefaultConfig.METHOD;
         followRedirects = CBDefaultConfig.FOLLOW_REDIRECTS;
+        charset = CBDefaultConfig.CHARSET;
         header.clear();
         data = null;
         return this;
