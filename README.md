@@ -13,7 +13,7 @@
          <artifactId>base</artifactId>
          <version>1.0.6</version>
      </dependency>
-
+ 
 ##  JavaDoc
 
 [http://doc.codeboy.me/Base/](http://doc.codeboy.me/Base/)
