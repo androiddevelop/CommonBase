@@ -28,6 +28,8 @@ abstract public class CBConnection {
     private boolean keepSession = CBDefaultConfig.KEEP_SESSION; //保持session
     private String cookie = null; //用户维持session的cookie
     private String data = null; //请求表单数据
+    private boolean keepCharset = false; //保持编码集
+    private boolean keepMethod = false; //保持请求方式
     private Map<String, String> header = new HashMap<String, String>(); //头部
 
     /**
@@ -58,16 +60,39 @@ abstract public class CBConnection {
     }
 
     /**
+     * 保持请求编码集
+     *
+     * @param keepCharset
+     *         保持编码集
+     * @return 连接
+     */
+    public CBConnection keepCharset(boolean keepCharset) {
+        this.keepCharset = keepCharset;
+        return this;
+    }
+
+    /**
      * 设置编码
      *
      * @param charset
      *         编码,默认编码UTF-8
      * @return 连接
-     *
      * @see CBDefaultConfig
      */
     public CBConnection charset(String charset) {
         this.charset = charset;
+        return this;
+    }
+
+    /**
+     * 保持请求方式
+     *
+     * @param keepMethod
+     *         保持请求方式
+     * @return 连接
+     */
+    public CBConnection keepMethod(boolean keepMethod) {
+        this.keepMethod = keepMethod;
         return this;
     }
 
@@ -77,7 +102,6 @@ abstract public class CBConnection {
      * @param method
      *         方法,默认GET
      * @return 连接
-     *
      * @see CBMethod
      * @see CBDefaultConfig
      */
@@ -116,7 +140,6 @@ abstract public class CBConnection {
      * @param timeout
      *         时间,单位毫秒,默认30s
      * @return 连接
-     *
      * @see CBDefaultConfig
      */
     public CBConnection timeout(int timeout) {
@@ -338,11 +361,15 @@ abstract public class CBConnection {
      */
     protected CBConnection resetSomeState() {
         url = null;
-        method = CBDefaultConfig.METHOD;
         followRedirects = CBDefaultConfig.FOLLOW_REDIRECTS;
-        charset = CBDefaultConfig.CHARSET;
         header.clear();
         data = null;
+        if (!keepMethod) {
+            method = CBDefaultConfig.METHOD;
+        }
+        if (!keepCharset) {
+            charset = CBDefaultConfig.CHARSET;
+        }
         return this;
     }
 

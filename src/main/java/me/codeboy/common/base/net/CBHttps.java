@@ -41,6 +41,7 @@ public class CBHttps extends CBConnection {
         if (httpsClient == null) {
             httpsClient = new CBHttps();
         }
+        //重置状态(保留维持session的状态)
         httpsClient.resetSomeState();
         return httpsClient;
     }

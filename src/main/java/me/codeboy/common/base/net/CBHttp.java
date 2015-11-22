@@ -15,6 +15,7 @@ public class CBHttp extends CBConnection {
         if (httpClient == null) {
             httpClient = new CBHttp();
         }
+        //重置状态(保留维持session的状态)
         httpClient.resetSomeState();
         return httpClient;
     }
