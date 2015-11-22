@@ -3,7 +3,6 @@ package me.codeboy.common.base.example;
 import me.codeboy.common.base.log.CBLog;
 import me.codeboy.common.base.net.CBHttp;
 import me.codeboy.common.base.net.CBHttps;
-import me.codeboy.common.base.net.constant.CBMethod;
 import me.codeboy.common.base.security.CBBase64;
 import me.codeboy.common.base.util.CBVersionUtil;
 
@@ -16,14 +15,14 @@ import java.io.IOException;
 public class TestExample {
 
     public static void main(String[] args) {
-//         new TestExample().testBase64();
+         new TestExample().testBase64();
 //         new TestExample().testHttps();
-        new TestExample().testHttp();
+//        new TestExample().testHttp();
 //        new TestExample().testVersionUtil();
     }
 
     /**
-     * base64编
+     * base64编码
      */
     public void testBase64() {
         String str = "小胖轩(codeboy.me)";
