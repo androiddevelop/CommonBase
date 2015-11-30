@@ -297,6 +297,7 @@ public class CBConnection {
      */
     public CBConnection doNotTakeSessionForOnce() {
         pauseSessionForOnce = true;
+        return this;
     }
 
     /**
