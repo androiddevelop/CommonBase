@@ -1,6 +1,5 @@
 package me.codeboy.common.base.net.core;
 
-import me.codeboy.common.base.log.CBLog;
 import me.codeboy.common.base.net.constant.CBDefaultConfig;
 import me.codeboy.common.base.net.constant.CBHeader;
 import me.codeboy.common.base.net.constant.CBMethod;
@@ -19,13 +18,14 @@ import java.util.Map;
  *
  * @author Yuedong Li
  */
-abstract public class CBConnection {
+public class CBConnection {
     private String url = null; //请求地址
     private int timeout = CBDefaultConfig.TIMEOUT; //超时时间,默认30s
     private CBMethod method = CBDefaultConfig.METHOD; //请求方式,默认get
     private String charset = CBDefaultConfig.CHARSET; //编码方式,模式UTF-8
     private boolean followRedirects = CBDefaultConfig.FOLLOW_REDIRECTS; //是否继续请求
     private boolean keepSession = CBDefaultConfig.KEEP_SESSION; //保持session
+    private boolean pauseSessionForOnce = false; //暂时不携带session信息一次
     private String cookie = null; //用户维持session的cookie
     private String data = null; //请求表单数据
     private boolean keepCharset = false; //保持编码集
@@ -291,6 +291,15 @@ abstract public class CBConnection {
     }
 
     /**
+     * 此次连接不进行session信息携带
+     *
+     * @return 连接
+     */
+    public CBConnection doNotTakeSessionForOnce() {
+        pauseSessionForOnce = true;
+    }
+
+    /**
      * 获取网页的内容
      *
      * @return 网页/目标源码
@@ -316,10 +325,12 @@ abstract public class CBConnection {
         }
 
         //保持session的把设置cookie
-        if (keepSession && !CBStringUtil.isEmptyOrNull(cookie) && !header.containsKey(CBHeader.COOKIE)) {
+        if (keepSession && !CBStringUtil.isEmptyOrNull(cookie) && !header.containsKey(CBHeader.COOKIE)
+                && !pauseSessionForOnce) {
             conn.setRequestProperty(CBHeader.COOKIE, cookie);
-            CBLog.print("set cookie");
         }
+
+        pauseSessionForOnce = false;
 
         //设置超时时间
         conn.setConnectTimeout(timeout);
@@ -346,7 +357,6 @@ abstract public class CBConnection {
 
         //记录cookie值,用于下次传递
         String tmpCookie = conn.getHeaderField(CBHeader.SET_COOKIE);
-        CBLog.print(tmpCookie);
         if (keepSession && CBStringUtil.isEmptyOrNull(cookie) && !CBStringUtil.isEmptyOrNull(tmpCookie)) {
             cookie = tmpCookie;
         }
