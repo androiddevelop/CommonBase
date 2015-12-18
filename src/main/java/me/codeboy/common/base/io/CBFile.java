@@ -180,6 +180,21 @@ public class CBFile {
     }
 
     /**
+     * 按照UTF-8编码保存到相应内容到指定文件
+     *
+     * @param content
+     *         文件内容
+     * @param file
+     *         文件
+     * @throws IOException
+     */
+    public void saveContentToFile(String content, File file)
+            throws IOException {
+        saveContentToFile(content, file, "UTF-8");
+    }
+
+
+    /**
      * 保存网络文件到指定路径
      *
      * @param url
@@ -189,10 +204,23 @@ public class CBFile {
      * @throws IOException
      */
     public void saveContentToFile(URL url, String filePath) throws IOException {
+        saveContentToFile(url, new File(filePath));
+    }
+
+    /**
+     * 保存网络文件到指定文件
+     *
+     * @param url
+     *         文件地址
+     * @param file
+     *         文件
+     * @throws IOException
+     */
+    public void saveContentToFile(URL url, File file) throws IOException {
         InputStream is = url.openStream();
-        FileOutputStream fos = new FileOutputStream(filePath);
+        FileOutputStream fos = new FileOutputStream(file);
         byte[] b = new byte[1024];
-        int len = 0;
+        int len;
         while ((len = is.read(b)) != -1) {
             fos.write(b, 0, len);
         }
@@ -200,6 +228,7 @@ public class CBFile {
         fos.close();
         is.close();
     }
+
 
     /**
      * 按照指定编码保存相应内容到指定路径的文件
@@ -215,8 +244,25 @@ public class CBFile {
 
     public void saveContentToFile(String content, String filePath,
                                   String encoding) throws IOException {
+        saveContentToFile(content, new File(filePath), encoding);
+    }
+
+    /**
+     * 按照指定编码保存相应内容到指定文件
+     *
+     * @param content
+     *         文件内容
+     * @param file
+     *         文件
+     * @param encoding
+     *         编码
+     * @throws IOException
+     */
+
+    public void saveContentToFile(String content, File file,
+                                  String encoding) throws IOException {
         BufferedWriter buff = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream(filePath), encoding));
+                new FileOutputStream(file), encoding));
         buff.write(content);
         buff.flush();
         buff.close();
