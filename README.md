@@ -4,14 +4,14 @@
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.0.8'
+    compile 'me.codeboy.common:base:1.0.9'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.0.8</version>
+         <version>1.0.9</version>
      </dependency>
  
 ##  JavaDoc
@@ -37,7 +37,7 @@
 
 ## 类的说明(后续不断增加)
 
-- CBFile
+- CBFileUtil
 
         文件操作。读取，写入等
         

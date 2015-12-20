@@ -1,4 +1,4 @@
-package me.codeboy.common.base.io;
+package me.codeboy.common.base.io.util;
 
 import java.io.*;
 import java.net.URL;
@@ -6,11 +6,11 @@ import java.util.Arrays;
 import java.util.List;
 
 /**
- * 文件操作
+ * 文件操作工具类
  *
  * @author Yuedong Li
  */
-public class CBFile {
+public class CBFileUtil {
 
     /**
      * 按照UTF-8编码得到文件内容
@@ -20,7 +20,7 @@ public class CBFile {
      * @return 文件内容
      * @throws IOException
      */
-    public String getFileContent(String filePath) throws IOException {
+    public static String getFileContent(String filePath) throws IOException {
         return getFileContent(filePath, "UTF-8");
     }
 
@@ -34,7 +34,7 @@ public class CBFile {
      * @return 文件内容
      * @throws IOException
      */
-    public String getFileContent(String filePath, String encoding)
+    public static String getFileContent(String filePath, String encoding)
             throws IOException {
         BufferedReader buff = new BufferedReader(new InputStreamReader(
                 new FileInputStream(filePath), encoding));
@@ -51,7 +51,7 @@ public class CBFile {
      * @return 文件内容
      * @throws IOException
      */
-    public List<String> getFileContentAsList(String filePath)
+    public static List<String> getFileContentAsList(String filePath)
             throws IOException {
         return Arrays.asList(getFileContent(filePath).split("\\n"));
     }
@@ -64,7 +64,7 @@ public class CBFile {
      * @return 文件内容
      * @throws IOException
      */
-    public List<String> getFileContentAsList(File file)
+    public static List<String> getFileContentAsList(File file)
             throws IOException {
         return getFileContentAsList(file, "UTF-8");
     }
@@ -79,7 +79,7 @@ public class CBFile {
      * @return 文件内容
      * @throws IOException
      */
-    public List<String> getFileContentAsList(String filePath, String encoding)
+    public static List<String> getFileContentAsList(String filePath, String encoding)
             throws IOException {
         return Arrays.asList(getFileContent(filePath, encoding).split("\\n"));
     }
@@ -94,7 +94,7 @@ public class CBFile {
      * @return 文件内容
      * @throws IOException
      */
-    public List<String> getFileContentAsList(File file, String encoding)
+    public static List<String> getFileContentAsList(File file, String encoding)
             throws IOException {
         return Arrays.asList(getFileContent(new FileInputStream(file), encoding).split("\\n"));
     }
@@ -108,7 +108,7 @@ public class CBFile {
      * @return 文件内容
      * @throws IOException
      */
-    public String getFileContent(File file) throws IOException {
+    public static String getFileContent(File file) throws IOException {
         return getFileContent(new FileInputStream(file));
     }
 
@@ -120,7 +120,7 @@ public class CBFile {
      * @return 文件内容
      * @throws IOException
      */
-    public String getFileContent(InputStream is) throws IOException {
+    public static String getFileContent(InputStream is) throws IOException {
         BufferedReader buff = new BufferedReader(new InputStreamReader(is,
                 "UTF-8"));
         String content = getContent(buff);
@@ -138,7 +138,7 @@ public class CBFile {
      * @return 文件内容
      * @throws IOException
      */
-    public String getFileContent(InputStream is, String encoding)
+    public static String getFileContent(InputStream is, String encoding)
             throws IOException {
         BufferedReader buff = new BufferedReader(new InputStreamReader(is,
                 encoding));
@@ -155,7 +155,7 @@ public class CBFile {
      * @return 内容
      * @throws IOException
      */
-    private String getContent(BufferedReader buff) throws IOException {
+    private static String getContent(BufferedReader buff) throws IOException {
         String line;
         StringBuffer content = new StringBuffer();
         while ((line = buff.readLine()) != null) {
@@ -174,7 +174,7 @@ public class CBFile {
      *         文件路径
      * @throws IOException
      */
-    public void saveContentToFile(String content, String filePath)
+    public static void saveContentToFile(String content, String filePath)
             throws IOException {
         saveContentToFile(content, filePath, "UTF-8");
     }
@@ -188,7 +188,7 @@ public class CBFile {
      *         文件
      * @throws IOException
      */
-    public void saveContentToFile(String content, File file)
+    public static void saveContentToFile(String content, File file)
             throws IOException {
         saveContentToFile(content, file, "UTF-8");
     }
@@ -203,7 +203,7 @@ public class CBFile {
      *         文件路径
      * @throws IOException
      */
-    public void saveContentToFile(URL url, String filePath) throws IOException {
+    public static void saveContentToFile(URL url, String filePath) throws IOException {
         saveContentToFile(url, new File(filePath));
     }
 
@@ -216,7 +216,7 @@ public class CBFile {
      *         文件
      * @throws IOException
      */
-    public void saveContentToFile(URL url, File file) throws IOException {
+    public static void saveContentToFile(URL url, File file) throws IOException {
         InputStream is = url.openStream();
         FileOutputStream fos = new FileOutputStream(file);
         byte[] b = new byte[1024];
@@ -242,8 +242,8 @@ public class CBFile {
      * @throws IOException
      */
 
-    public void saveContentToFile(String content, String filePath,
-                                  String encoding) throws IOException {
+    public static void saveContentToFile(String content, String filePath,
+                                         String encoding) throws IOException {
         saveContentToFile(content, new File(filePath), encoding);
     }
 
@@ -259,8 +259,8 @@ public class CBFile {
      * @throws IOException
      */
 
-    public void saveContentToFile(String content, File file,
-                                  String encoding) throws IOException {
+    public static void saveContentToFile(String content, File file,
+                                         String encoding) throws IOException {
         BufferedWriter buff = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(file), encoding));
         buff.write(content);
