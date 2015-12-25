@@ -5,7 +5,7 @@ package me.codeboy.common.base.log;
  *
  * @author Yuedong Li
  */
-public class CBLog {
+public class CBPrint {
     private static boolean ONOFF = false; //默认不打印
 
     /**

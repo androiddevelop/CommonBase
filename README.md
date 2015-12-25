@@ -4,14 +4,14 @@
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.0.9'
+    compile 'me.codeboy.common:base:1.1.0'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.0.9</version>
+         <version>1.1.0</version>
      </dependency>
  
 ##  JavaDoc
@@ -61,9 +61,9 @@
 
         md5 sha 加密
 
-- CBLog
+- CBPrint
 
-        日志打印
+        打印
 
 - CBMapSortUtil
 
