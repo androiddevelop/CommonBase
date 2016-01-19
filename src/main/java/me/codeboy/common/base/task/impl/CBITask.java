@@ -6,7 +6,7 @@ import me.codeboy.common.base.task.listener.CBTaskListener;
  * 任务接口
  * Created by YD on 1/18/16.
  */
-public interface CBTask {
+public interface CBITask {
     void startTask();  //启动任务
 
     void stopTask(); //停止任务
