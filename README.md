@@ -4,14 +4,14 @@
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.1.1'
+    compile 'me.codeboy.common:base:1.1.2'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.1.1</version>
+         <version>1.1.2</version>
      </dependency>
  
 ##  JavaDoc
@@ -77,7 +77,7 @@
 
         版本比较工具
         
-- CBTaskController, CBTask, CBThreadTask
+- CBTaskController, CBTask
         
         任务控制,有数量限制的执行一组任务
        
