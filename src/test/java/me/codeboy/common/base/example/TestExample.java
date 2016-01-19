@@ -5,7 +5,7 @@ import me.codeboy.common.base.net.CBHttp;
 import me.codeboy.common.base.net.CBHttps;
 import me.codeboy.common.base.security.CBBase64;
 import me.codeboy.common.base.task.CBTaskController;
-import me.codeboy.common.base.task.CBThreadTask;
+import me.codeboy.common.base.task.CBTask;
 import me.codeboy.common.base.util.CBVersionUtil;
 
 import java.io.IOException;
@@ -81,7 +81,7 @@ public class TestExample {
         CBTaskController controller = new CBTaskController(10);
         for (int i = 0; i < 100; i++) {
             final int index = i;
-            controller.addTask(new CBThreadTask() {
+            controller.addTask(new CBTask() {
                 @Override
                 public void task(boolean stopSign){
                     try {

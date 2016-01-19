@@ -1,14 +1,14 @@
 package me.codeboy.common.base.task;
 
 
-import me.codeboy.common.base.task.impl.ICBTask;
+import me.codeboy.common.base.task.impl.CBITask;
 import me.codeboy.common.base.task.listener.CBTaskListener;
 
 /**
  * 任务
  * Created by YD on 1/18/16.
  */
-abstract public class CBTask extends Thread implements ICBTask {
+abstract public class CBTask extends Thread implements CBITask {
     private volatile boolean stopSign = false;
     private volatile boolean finished = false;
     private CBTaskListener listener;
