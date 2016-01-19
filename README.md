@@ -4,14 +4,14 @@
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.1.2'
+    compile 'me.codeboy.common:base:1.2.0'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.1.2</version>
+         <version>1.2.0</version>
      </dependency>
  
 ##  JavaDoc
