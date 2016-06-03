@@ -11,8 +11,7 @@ public class CBPrint {
     /**
      * 打印日志
      *
-     * @param info
-     *         要打印 内容
+     * @param info 要打印的内容
      */
     public static void log(Object info) {
         if (ONOFF) {
@@ -23,8 +22,7 @@ public class CBPrint {
     /**
      * 设置开关
      *
-     * @param onOff
-     *         日志开关
+     * @param onOff 日志开关
      */
     public static void setOnOff(boolean onOff) {
         ONOFF = onOff;
@@ -33,10 +31,18 @@ public class CBPrint {
     /**
      * 打印
      *
-     * @param obj
-     *         打印对象
+     * @param obj 打印对象
      */
     public static void print(Object obj) {
+        System.out.print(obj);
+    }
+
+    /**
+     * 打印
+     *
+     * @param obj 打印对象
+     */
+    public static void println(Object obj) {
         System.out.println(obj);
     }
 }

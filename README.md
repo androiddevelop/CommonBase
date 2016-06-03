@@ -4,14 +4,14 @@
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.2.0'
+    compile 'me.codeboy.common:base:1.2.1'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.2.0</version>
+         <version>1.2.1</version>
      </dependency>
  
 ##  JavaDoc
@@ -80,4 +80,8 @@
 - CBTaskController, CBTask
         
         任务控制,有数量限制的执行一组任务
+
+- CBTimeLock
+
+        时间锁,超过一定时间自动解锁
        
