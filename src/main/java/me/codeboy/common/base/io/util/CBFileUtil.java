@@ -18,7 +18,7 @@ public class CBFileUtil {
      * @param filePath
      *         源文件路径
      * @return 文件内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static String getFileContent(String filePath) throws IOException {
         return getFileContent(filePath, "UTF-8");
@@ -32,7 +32,7 @@ public class CBFileUtil {
      * @param encoding
      *         文件编
      * @return 文件内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static String getFileContent(String filePath, String encoding)
             throws IOException {
@@ -49,7 +49,7 @@ public class CBFileUtil {
      * @param filePath
      *         源文件路径
      * @return 文件内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static List<String> getFileContentAsList(String filePath)
             throws IOException {
@@ -62,7 +62,7 @@ public class CBFileUtil {
      * @param file
      *         源文件
      * @return 文件内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static List<String> getFileContentAsList(File file)
             throws IOException {
@@ -77,7 +77,7 @@ public class CBFileUtil {
      * @param encoding
      *         文件编
      * @return 文件内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static List<String> getFileContentAsList(String filePath, String encoding)
             throws IOException {
@@ -92,7 +92,7 @@ public class CBFileUtil {
      * @param encoding
      *         文件编
      * @return 文件内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static List<String> getFileContentAsList(File file, String encoding)
             throws IOException {
@@ -106,7 +106,7 @@ public class CBFileUtil {
      * @param file
      *         文件
      * @return 文件内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static String getFileContent(File file) throws IOException {
         return getFileContent(new FileInputStream(file));
@@ -118,7 +118,7 @@ public class CBFileUtil {
      * @param is
      *         输入流
      * @return 文件内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static String getFileContent(InputStream is) throws IOException {
         BufferedReader buff = new BufferedReader(new InputStreamReader(is,
@@ -136,7 +136,7 @@ public class CBFileUtil {
      * @param encoding
      *         文件编
      * @return 文件内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static String getFileContent(InputStream is, String encoding)
             throws IOException {
@@ -153,7 +153,7 @@ public class CBFileUtil {
      * @param buff
      *         bufferedReader
      * @return 内容
-     * @throws IOException
+     * @throws IOException io exception
      */
     private static String getContent(BufferedReader buff) throws IOException {
         String line;
@@ -172,7 +172,7 @@ public class CBFileUtil {
      *         文件内容
      * @param filePath
      *         文件路径
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static void saveContentToFile(String content, String filePath)
             throws IOException {
@@ -186,7 +186,7 @@ public class CBFileUtil {
      *         文件内容
      * @param file
      *         文件
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static void saveContentToFile(String content, File file)
             throws IOException {
@@ -201,7 +201,7 @@ public class CBFileUtil {
      *         文件地址
      * @param filePath
      *         文件路径
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static void saveContentToFile(URL url, String filePath) throws IOException {
         saveContentToFile(url, new File(filePath));
@@ -214,7 +214,7 @@ public class CBFileUtil {
      *         文件地址
      * @param file
      *         文件
-     * @throws IOException
+     * @throws IOException io exception
      */
     public static void saveContentToFile(URL url, File file) throws IOException {
         InputStream is = url.openStream();
@@ -239,7 +239,7 @@ public class CBFileUtil {
      *         文件路径
      * @param encoding
      *         编码
-     * @throws IOException
+     * @throws IOException io exception
      */
 
     public static void saveContentToFile(String content, String filePath,
@@ -256,7 +256,7 @@ public class CBFileUtil {
      *         文件
      * @param encoding
      *         编码
-     * @throws IOException
+     * @throws IOException io exception
      */
 
     public static void saveContentToFile(String content, File file,

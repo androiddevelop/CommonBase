@@ -46,6 +46,7 @@ public final class CBBase64 {
      * @param in
      *         输入字符串
      * @return 解码后字符串
+     * @throws  IOException io exception
      * @see CBDefaultConfig
      */
     public static String decode(String in) throws IOException {
@@ -60,6 +61,7 @@ public final class CBBase64 {
      * @param charset
      *         编码集
      * @return 解码后字符串
+     * @throws  IOException io exception
      */
     public static String decode(String in, String charset) throws IOException {
         return new String(decode2(in), charset);

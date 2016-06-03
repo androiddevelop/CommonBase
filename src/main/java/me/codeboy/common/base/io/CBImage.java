@@ -8,7 +8,7 @@ import java.io.IOException;
 
 /**
  * 图片操作
- * <p/>
+ * <p>
  * Created by Yuedong Li on 11/21/15.
  */
 public class CBImage {
@@ -31,12 +31,9 @@ public class CBImage {
     /**
      * 在图片上写字
      *
-     * @param text
-     *         字符串
-     * @param fontSize
-     *         字体大小
-     * @param color
-     *         字体颜色
+     * @param text     字符串
+     * @param fontSize 字体大小
+     * @param color    字体颜色
      * @return 图片
      */
     public BufferedImage drawText(String text, int fontSize, Color color) {
@@ -54,10 +51,8 @@ public class CBImage {
     /**
      * 缩放图片
      *
-     * @param scaleW
-     *         水平缩放比例
-     * @param scaleH
-     *         垂直缩放比例
+     * @param scaleW 水平缩放比例
+     * @param scaleH 垂直缩放比例
      * @return bufferedImage
      */
     public BufferedImage scale(double scaleW, double scaleH) {
@@ -92,8 +87,7 @@ public class CBImage {
     /**
      * 保存图片
      *
-     * @param file
-     *         图片文件
+     * @param file 图片文件
      */
     public void save(File file) {
         try {

@@ -35,8 +35,7 @@ public class CBConnection {
     /**
      * 连接地址
      *
-     * @param url
-     *         url
+     * @param url url
      * @return 连接
      */
     public CBConnection connect(String url) {
@@ -47,10 +46,8 @@ public class CBConnection {
     /**
      * 连接地址
      *
-     * @param url
-     *         url
-     * @param charset
-     *         编码
+     * @param url     url
+     * @param charset 编码
      * @return 连接
      */
     public CBConnection connect(String url, String charset) {
@@ -62,8 +59,7 @@ public class CBConnection {
     /**
      * 保持请求编码集
      *
-     * @param keepCharset
-     *         保持编码集
+     * @param keepCharset 保持编码集
      * @return 连接
      */
     public CBConnection keepCharset(boolean keepCharset) {
@@ -74,8 +70,7 @@ public class CBConnection {
     /**
      * 设置编码
      *
-     * @param charset
-     *         编码,默认编码UTF-8
+     * @param charset 编码,默认编码UTF-8
      * @return 连接
      * @see CBDefaultConfig
      */
@@ -87,8 +82,7 @@ public class CBConnection {
     /**
      * 保持请求方式
      *
-     * @param keepMethod
-     *         保持请求方式
+     * @param keepMethod 保持请求方式
      * @return 连接
      */
     public CBConnection keepMethod(boolean keepMethod) {
@@ -99,8 +93,7 @@ public class CBConnection {
     /**
      * 请求方法
      *
-     * @param method
-     *         方法,默认GET
+     * @param method 方法,默认GET
      * @return 连接
      * @see CBMethod
      * @see CBDefaultConfig
@@ -113,8 +106,7 @@ public class CBConnection {
     /**
      * 设置请求头部中的cookie
      *
-     * @param cookie
-     *         cookie
+     * @param cookie cookie
      * @return 连接
      */
     public CBConnection cookie(String cookie) {
@@ -125,8 +117,7 @@ public class CBConnection {
     /**
      * 设置请求属性
      *
-     * @param followRedirect
-     *         是否在301/302的时候继续请求
+     * @param followRedirect 是否在301/302的时候继续请求
      * @return 连接
      */
     public CBConnection followRedirects(boolean followRedirect) {
@@ -137,8 +128,7 @@ public class CBConnection {
     /**
      * 设置请求连接与读取的超时时间
      *
-     * @param timeout
-     *         时间,单位毫秒,默认30s
+     * @param timeout 时间,单位毫秒,默认30s
      * @return 连接
      * @see CBDefaultConfig
      */
@@ -150,8 +140,7 @@ public class CBConnection {
     /**
      * 设置请求头部中的host
      *
-     * @param host
-     *         host
+     * @param host host
      * @return 连接
      */
     public CBConnection host(String host) {
@@ -162,8 +151,7 @@ public class CBConnection {
     /**
      * 设置请求头部中的referer
      *
-     * @param referrer
-     *         来源
+     * @param referrer 来源
      * @return 连接
      */
     public CBConnection referrer(String referrer) {
@@ -174,8 +162,7 @@ public class CBConnection {
     /**
      * 设置请求头部中的user agent
      *
-     * @param userAgent
-     *         ua
+     * @param userAgent ua
      * @return 连接
      */
     public CBConnection userAgent(String userAgent) {
@@ -206,8 +193,7 @@ public class CBConnection {
     /**
      * 添加请求头部,此方法将会清空之前所有已经设置的头部信息
      *
-     * @param header
-     *         请求头部
+     * @param header 请求头部
      * @return 连接
      * @see #header(String, String)
      */
@@ -223,10 +209,8 @@ public class CBConnection {
     /**
      * 添加请求头部,仅仅添加一个,不会清空之前已经设置的头部
      *
-     * @param key
-     *         请求头部名字
-     * @param value
-     *         请求头部值
+     * @param key   请求头部名字
+     * @param value 请求头部值
      * @return 连接
      * @see #header(Map)
      */
@@ -238,8 +222,7 @@ public class CBConnection {
     /**
      * 设置请求数据
      *
-     * @param data
-     *         表单数据,格式a=1&b=2
+     * @param data 表单数据,格式与url传递参数格式相同
      * @return 连接
      */
     public CBConnection data(String data) {
@@ -249,9 +232,8 @@ public class CBConnection {
 
     /**
      * 设置请求数据
-     *
-     * @param data
-     *         表单数据
+     * 
+     * @param data 表单数据
      * @return 连接
      */
     public CBConnection data(String... data) {
@@ -264,8 +246,7 @@ public class CBConnection {
     /**
      * 设置请求数据
      *
-     * @param data
-     *         表单数据
+     * @param data 表单数据
      * @return 连接
      */
     public CBConnection data(Map<String, String> data) {
@@ -278,8 +259,7 @@ public class CBConnection {
     /**
      * 保持session,便于请求下个连接的时候不需要再次设置cookie等值
      *
-     * @param keepSession
-     *         保持session
+     * @param keepSession 保持session
      * @return 连接
      */
     public CBConnection keepSession(boolean keepSession) {
@@ -304,8 +284,7 @@ public class CBConnection {
      * 获取网页的内容
      *
      * @return 网页/目标源码
-     * @throws IOException
-     *         异常
+     * @throws IOException 异常
      */
     public String execute() throws IOException {
 
@@ -387,10 +366,8 @@ public class CBConnection {
     /**
      * 保存指定位置的文件
      *
-     * @param file
-     *         保存文件
-     * @throws IOException
-     *         IO异常
+     * @param file 保存文件
+     * @throws IOException IO异常
      */
     public void saveToFile(File file)
             throws IOException {
