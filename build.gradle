@@ -10,7 +10,7 @@ plugins {
 }
 
 group 'me.codeboy.common'
-version '1.2.1'
+version '1.3.0'
 
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
@@ -86,7 +86,7 @@ bintray {
         publicDownloadNumbers = true
         publish = true
         version {
-            name = "1.2.1"
+            name = "1.3.0"
             gpg {
                 sign = true
                 passphrase = properties.getProperty("bintray.gpg.password")

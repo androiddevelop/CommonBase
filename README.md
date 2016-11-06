@@ -4,14 +4,14 @@
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.2.1'
+    compile 'me.codeboy.common:base:1.3.0'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.2.1</version>
+         <version>1.3.0</version>
      </dependency>
  
 ##  JavaDoc
@@ -40,7 +40,6 @@
 - CBFileUtil
 
         文件操作。读取，写入等
-        
         
 - CBImage
 
@@ -81,7 +80,11 @@
         
         任务控制,有数量限制的执行一组任务
 
-- CBTimeLock
+- CBTimeWait (1.3.0+)
 
-        时间锁,超过一定时间自动解锁
+        时间等待,对Thead.sleep进行简单封装
+
+- CBTimer (1.3.0+)
+        
+        计时器,便捷进行时间统计
        
