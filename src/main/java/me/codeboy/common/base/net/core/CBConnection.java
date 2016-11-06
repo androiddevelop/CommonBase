@@ -232,7 +232,7 @@ public class CBConnection {
 
     /**
      * 设置请求数据
-     * 
+     *
      * @param data 表单数据
      * @return 连接
      */

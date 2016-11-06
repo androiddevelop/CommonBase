@@ -14,7 +14,7 @@ public class CBVersionUtil {
      *         新版本
      * @return 是否有新的版本存在(是否新版本版本号大于老的版本号)
      */
-    public static boolean versionCompareAndHasANewVersion(String oldVersion, String newVersion) {
+    public static boolean HasNewVersion(String oldVersion, String newVersion) {
         //版本号有一个不正常就返回false
         if (CBStringUtil.isEmptyOrNull(oldVersion) || CBStringUtil.isEmptyOrNull(newVersion)) {
             return false;
