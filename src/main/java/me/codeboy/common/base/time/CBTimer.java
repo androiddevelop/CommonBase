@@ -34,7 +34,8 @@ public class CBTimer {
      * 将指定时间与key进行关联
      * <p>key值不要以CB_TIMER开头,CB_TIMER为系统内置计时key,以CB_TIMER开头的key将自动被过滤掉</p>
      *
-     * @param key key
+     * @param key  key
+     * @param time 时间
      */
     public void push(String key, long time) {
         if (key.startsWith("CB_TIMER")) {
@@ -44,10 +45,10 @@ public class CBTimer {
     }
 
     /**
-     * 获取最后一个push到当前的时间
+     * 获取最后一个push到当前的时间间隔
      * {@link CBTimer#push()}
      *
-     * @return 相应时间
+     * @return 时间间隔
      */
     public long pop() {
         String key = String.format(Locale.CHINA, TIME_KEY, count);
@@ -55,22 +56,23 @@ public class CBTimer {
     }
 
     /**
-     * 获取最后一个push key到当前的时间
+     * 获取最后一个push key到当前的时间间隔
      * {@link CBTimer#push(String)}
      *
      * @param key key
-     * @return 相应时间
+     * @return 时间间隔
      */
     public long pop(String key) {
         return pop(key, System.currentTimeMillis());
     }
 
     /**
-     * 获取最后一个push key到指定时间之间的时间
+     * 获取最后一个push key到指定时间之间的时间间隔
      * {@link CBTimer#push(String)}
      *
-     * @param key key
-     * @return 相应时间
+     * @param key  key
+     * @param time 时间
+     * @return 时间间隔
      */
     public long pop(String key, long time) {
         if (!times.containsKey(key)) {
