@@ -46,7 +46,9 @@ public class CBTimer {
 
     /**
      * 获取最后一个push到当前的时间间隔,如果pop已经弹出了所有的key,返回-1
-     * {@link CBTimer#push()}
+     * <p>
+     * 与{@link CBTimer#push()}对应
+     * </p>
      *
      * @return 时间间隔
      */
@@ -61,7 +63,9 @@ public class CBTimer {
 
     /**
      * 获取最后一个push key到当前的时间间隔
-     * {@link CBTimer#push(String)}
+     * <p>
+     * 与{@link CBTimer#push(String)}对应
+     * </p>
      *
      * @param key key
      * @return 时间间隔
@@ -72,7 +76,9 @@ public class CBTimer {
 
     /**
      * 获取最后一个push key到指定时间之间的时间间隔
-     * {@link CBTimer#push(String)}
+     * <p>
+     * 与{@link CBTimer#push(String)}对应
+     * </p>
      *
      * @param key  key
      * @param time 时间
