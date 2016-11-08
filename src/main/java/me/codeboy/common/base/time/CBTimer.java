@@ -11,7 +11,7 @@ import java.util.Map;
 public class CBTimer {
     private Map<String, Long> times = new HashMap<>();
     private final static String TIME_KEY = "CB_TIMER_%d"; //内置计时前缀
-    private long count = 0;
+    private long count = -1;
 
     /**
      * 记录当前时间
@@ -45,13 +45,17 @@ public class CBTimer {
     }
 
     /**
-     * 获取最后一个push到当前的时间间隔
+     * 获取最后一个push到当前的时间间隔,如果pop已经弹出了所有的key,返回-1
      * {@link CBTimer#push()}
      *
      * @return 时间间隔
      */
     public long pop() {
+        if (count < 0) {
+            return -1;
+        }
         String key = String.format(Locale.CHINA, TIME_KEY, count);
+        count--;
         return pop(key);
     }
 
@@ -104,7 +108,7 @@ public class CBTimer {
     }
 
     /**
-     * 获取最后一次push的时间
+     * 获取最后一次push的时间(pop操作会抵消一次push操作),如果没有对应的push，返回null
      *
      * @return 时间, 单位毫秒
      */
