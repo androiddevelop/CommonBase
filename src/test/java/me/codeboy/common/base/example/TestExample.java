@@ -70,11 +70,11 @@ public class TestExample {
      * 版本比较
      */
     public void testVersionUtil() {
-        CBPrint.print(CBVersionUtil.HasNewVersion("1.1.2", "1.2.1"));
-        CBPrint.print(CBVersionUtil.HasNewVersion("1.1.2", "1.1.2"));
-        CBPrint.print(CBVersionUtil.HasNewVersion("1.1.2", "1.1.2.1"));
-        CBPrint.print(CBVersionUtil.HasNewVersion("1.10.2", "1.2.1.1"));
-        CBPrint.print(CBVersionUtil.HasNewVersion("1.10.2", "1.1.1"));
+        CBPrint.print(CBVersionUtil.hasNewVersion("1.1.2", "1.2.1"));
+        CBPrint.print(CBVersionUtil.hasNewVersion("1.1.2", "1.1.2"));
+        CBPrint.print(CBVersionUtil.hasNewVersion("1.1.2", "1.1.2.1"));
+        CBPrint.print(CBVersionUtil.hasNewVersion("1.10.2", "1.2.1.1"));
+        CBPrint.print(CBVersionUtil.hasNewVersion("1.10.2", "1.1.1"));
     }
 
     /**
