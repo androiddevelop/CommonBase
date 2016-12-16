@@ -1,5 +1,6 @@
 package me.codeboy.common.base.example;
 
+import me.codeboy.common.base.io.util.CBFileUtil;
 import me.codeboy.common.base.log.CBPrint;
 import me.codeboy.common.base.net.CBHttp;
 import me.codeboy.common.base.net.CBHttps;
@@ -9,6 +10,7 @@ import me.codeboy.common.base.task.CBTask;
 import me.codeboy.common.base.time.CBTimer;
 import me.codeboy.common.base.util.CBVersionUtil;
 
+import java.io.File;
 import java.io.IOException;
 
 
@@ -23,7 +25,8 @@ public class TestExample {
 //        new TestExample().testHttp();
 //        new TestExample().testVersionUtil();
 //        new TestExample().testTask();
-        new TestExample().testTimer();
+//        new TestExample().testTimer();
+        new TestExample().testFileOperate();
     }
 
     /**
@@ -123,5 +126,20 @@ public class TestExample {
 
         CBPrint.println("time gap2: " + gap + " ms");
         CBPrint.println("total time: " + totalTime + " ms");
+    }
+
+    /**
+     * 测试文件追加操作
+     */
+    public void testFileOperate() {
+        try {
+            String projectDir = new File("").getAbsolutePath();
+            File saveFile = new File(projectDir, "base/src/test/resources/file");
+            CBFileUtil.saveContentToFile("Hello World!", saveFile);
+            CBFileUtil.saveContentToFile("\n", saveFile, true);
+            CBFileUtil.saveContentToFile("Welcome to visit codeboy.me!", saveFile , true);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
     }
 }
