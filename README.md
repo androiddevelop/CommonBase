@@ -4,14 +4,14 @@
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.3.2'
+    compile 'me.codeboy.common:base:1.3.3'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.3.2</version>
+         <version>1.3.3</version>
      </dependency>
  
 ##  JavaDoc
@@ -87,4 +87,14 @@
 - CBTimer (1.3.0+)
         
         计时器,便捷进行时间统计
+        
+## 更新历史
+
+- v1.3.3
+
+	文件工具类CBFileUtil支持追加写入。
+
+- v1.3.2 
+
+	增加了计时器。
        
