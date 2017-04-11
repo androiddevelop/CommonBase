@@ -4,14 +4,14 @@
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.3.3'
+    compile 'me.codeboy.common:base:1.3.4'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.3.3</version>
+         <version>1.3.4</version>
      </dependency>
  
 ##  JavaDoc
@@ -89,6 +89,10 @@
         计时器,便捷进行时间统计
         
 ## 更新历史
+
+- v1.3.4
+
+	CBStringUtil支持多个字符串判空。
 
 - v1.3.3
 
