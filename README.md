@@ -1,4 +1,9 @@
-# CommonBase(Java通用类封装)
+CommonBase
+---
+#### **Java通用类封装**
+
+[![Maven Central](https://maven-badges.herokuapp.com/maven-central/me.codeboy.common/base/badge.svg)](https://maven-badges.herokuapp.com/maven-central/me.codeboy.common/base)
+
 
 ## 引入方式
 
@@ -101,4 +106,25 @@
 - v1.3.2 
 
 	增加了计时器。
+	
+	
+## License
+
+```
+Copyright 2016 Yuedong.li
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```
+
+> 有任何问题,欢迎发送邮件到app@codeboy.me交流.
        
