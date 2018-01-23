@@ -17,8 +17,7 @@ public class FileUtilTest {
     @Test
     public void testFileOperate() {
         try {
-            String projectDir = new File("").getAbsolutePath();
-            File saveFile = new File(projectDir, "src/test/resources/file");
+            File saveFile = new File(CBFileUtil.getProjectPath(), "src/test/resources/file");
             CBFileUtil.saveContentToFile("Hello World!", saveFile);
             CBFileUtil.saveContentToFile("\n", saveFile, true);
             CBFileUtil.saveContentToFile("Welcome to visit codeboy.me!", saveFile , true);
