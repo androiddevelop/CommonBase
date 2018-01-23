@@ -53,4 +53,11 @@ abstract public class CBTask extends Thread implements ICBTask {
      * @param stopSign 结束标识符,任务执行流程应依赖于该标识,如果为true,代表任务需要被结束
      */
     public abstract void task(boolean stopSign);
+
+    @Override
+    public void waitForEnd() throws InterruptedException {
+        if(!finished) {
+            this.join();
+        }
+    }
 }

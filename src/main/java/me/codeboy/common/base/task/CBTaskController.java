@@ -3,6 +3,8 @@ package me.codeboy.common.base.task;
 import me.codeboy.common.base.task.impl.ICBTask;
 import me.codeboy.common.base.task.listener.CBTaskListener;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
@@ -40,37 +42,66 @@ public class CBTaskController {
      * 开始执行
      */
     public void startAllTasks() {
-        while (queue.size() != 0 || !stopSign) {
+        while (queue.size() != 0 && !stopSign) {
             ICBTask task = queue.poll();
             if (task == null) {
-                return;
+                continue;
             }
-            task.setTaskListener(new CBTaskListener() {
-                @Override
-                public void onTaskStart() {
-                    lock.lock();
-                    if (currentExecuteTaskNumber >= maxTaskNumber) {
-                        try {
-                            condition.await();
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                    currentExecuteTaskNumber++;
-                    lock.unlock();
-                }
-
-                @Override
-                public void onTaskEnd() {
-                    lock.lock();
-                    currentExecuteTaskNumber--;
-                    condition.signal();
-                    lock.unlock();
-                }
-            });
-
-            task.startTask();
+            setAndStartTask(task);
         }
+    }
+
+    /**
+     * 开始执行并且等待结束
+     * @throws InterruptedException exception
+     */
+    public void startAllTasksAndWaiting() throws InterruptedException {
+        List<ICBTask> taskList = new ArrayList<>();
+        while (queue.size() != 0 && !stopSign) {
+            ICBTask task = queue.poll();
+            if (task == null) {
+                continue;
+            }
+            taskList.add(task);
+            setAndStartTask(task);
+        }
+        for(ICBTask task:taskList){
+            if(!task.isTaskFinished()){
+                task.waitForEnd();
+            }
+        }
+    }
+
+    /**
+     * 设置任务的监听器并开始任务
+     * @param task 任务
+     */
+    private void setAndStartTask(ICBTask task){
+        task.setTaskListener(new CBTaskListener() {
+            @Override
+            public void onTaskStart() {
+                lock.lock();
+                if (currentExecuteTaskNumber > maxTaskNumber) {
+                    try {
+                        condition.await();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                currentExecuteTaskNumber++;
+                lock.unlock();
+            }
+
+            @Override
+            public void onTaskEnd() {
+                lock.lock();
+                currentExecuteTaskNumber--;
+                condition.signal();
+                lock.unlock();
+            }
+        });
+
+        task.startTask();
     }
 
     /**

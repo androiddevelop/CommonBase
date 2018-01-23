@@ -11,6 +11,15 @@ import java.util.List;
  * @author Yuedong Li
  */
 public class CBFileUtil {
+    private final static String DEFAULT_CHARSET= "UTF-8"; //默认编码
+
+    /**
+     * 获取工程目录
+     * @return dir
+     */
+    public static String getProjectPath(){
+        return  new File("").getAbsolutePath();
+    }
 
     /**
      * 按照UTF-8编码得到文件内容
@@ -20,7 +29,7 @@ public class CBFileUtil {
      * @throws IOException io exception
      */
     public static String getFileContent(String filePath) throws IOException {
-        return getFileContent(filePath, "UTF-8");
+        return getFileContent(filePath, DEFAULT_CHARSET);
     }
 
     /**
@@ -61,7 +70,7 @@ public class CBFileUtil {
      */
     public static List<String> getFileContentAsList(File file)
             throws IOException {
-        return getFileContentAsList(file, "UTF-8");
+        return getFileContentAsList(file, DEFAULT_CHARSET);
     }
 
     /**
@@ -135,6 +144,35 @@ public class CBFileUtil {
     }
 
     /**
+     * 按照UTF-8编码得到输入流字节内容
+     * @param file 文件
+     * @return 字节数组
+     * @throws IOException io exception
+     */
+    public static byte[] getFileByteContent(File file) throws IOException{
+        return getFileByteContent(new FileInputStream(file),DEFAULT_CHARSET);
+    }
+
+    /**
+     * 按照指定编码获取输入流字节内容
+     * @param is 输入流
+     * @param encoding 编码
+     * @return 字节数组
+     * @throws IOException io exception
+     */
+    public static byte[] getFileByteContent(InputStream is, String encoding) throws IOException{
+        byte[] buffer = new byte[1024];
+        int len;
+        ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+        while((len = is.read(buffer)) != -1){
+            outputStream.write(buffer, 0, len);
+        }
+        outputStream.close();
+        is.close();
+        return outputStream.toByteArray();
+    }
+
+    /**
      * 获取BufferedReader对应字符串
      *
      * @param buff bufferedReader
@@ -160,7 +198,7 @@ public class CBFileUtil {
      */
     public static void saveContentToFile(String content, String filePath)
             throws IOException {
-        saveContentToFile(content, filePath, "UTF-8");
+        saveContentToFile(content, filePath, DEFAULT_CHARSET);
     }
 
     /**
@@ -173,7 +211,7 @@ public class CBFileUtil {
      */
     public static void saveContentToFile(String content, String filePath, boolean append)
             throws IOException {
-        saveContentToFile(content, new File(filePath), "UTF-8", append);
+        saveContentToFile(content, new File(filePath), DEFAULT_CHARSET, append);
     }
 
     /**
@@ -185,7 +223,7 @@ public class CBFileUtil {
      */
     public static void saveContentToFile(String content, File file)
             throws IOException {
-        saveContentToFile(content, file, "UTF-8", false);
+        saveContentToFile(content, file, DEFAULT_CHARSET, false);
     }
 
     /**
@@ -198,7 +236,7 @@ public class CBFileUtil {
      */
     public static void saveContentToFile(String content, File file, boolean append)
             throws IOException {
-        saveContentToFile(content, file, "UTF-8", append);
+        saveContentToFile(content, file, DEFAULT_CHARSET, append);
     }
 
 
@@ -242,7 +280,6 @@ public class CBFileUtil {
      * @param encoding 编码
      * @throws IOException io exception
      */
-
     public static void saveContentToFile(String content, String filePath,
                                          String encoding) throws IOException {
         saveContentToFile(content, new File(filePath), encoding, false);
@@ -257,7 +294,6 @@ public class CBFileUtil {
      * @param append 是否追加
      * @throws IOException io exception
      */
-
     public static void saveContentToFile(String content, File file,
                                          String encoding, boolean append) throws IOException {
         BufferedWriter buff = new BufferedWriter(new OutputStreamWriter(

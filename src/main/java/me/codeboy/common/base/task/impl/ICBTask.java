@@ -14,4 +14,6 @@ public interface ICBTask {
     boolean isTaskFinished(); //是否结束
 
     void setTaskListener(CBTaskListener listener);
+
+    void waitForEnd()throws InterruptedException ; //等待结束
 }
