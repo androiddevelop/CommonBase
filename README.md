@@ -9,14 +9,14 @@ CommonBase
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.3.4'
+    compile 'me.codeboy.common:base:1.3.6'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.3.4</version>
+         <version>1.3.6</version>
      </dependency>
  
 ##  JavaDoc
@@ -94,6 +94,11 @@ CommonBase
         计时器,便捷进行时间统计
         
 ## 更新历史
+
+- v1.3.6
+
+	1.CBFile支持读取文件获取对应的byte数组；支持获取项目当前目录路径。
+	2.CBTaskController加入同步操作。
 
 - v1.3.4
 

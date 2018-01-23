@@ -1,21 +1,23 @@
-buildscript {
-    repositories {
-        jcenter()
-        mavenLocal()
-    }
-}
 
 plugins {
     id "com.jfrog.bintray" version "1.4"
 }
 
 group 'me.codeboy.common'
-version '1.3.4'
+version '1.3.6'
 
 apply plugin: 'maven'
 apply plugin: 'maven-publish'
 apply plugin: 'java'
 
+repositories {
+    jcenter()
+    mavenLocal()
+}
+
+dependencies {
+    testCompile ('junit:junit:4.12')
+}
 
 def siteUrl = 'https://github.com/androiddevelop/CommonBase'
 def issueUrl = 'https://github.com/androiddevelop/CommonBase/issues'
@@ -52,7 +54,6 @@ install {
     }
 }
 
-
 task sourcesJar(type: Jar) {
     from sourceSets.main.java.srcDirs
     classifier = 'sources'
@@ -86,7 +87,7 @@ bintray {
         publicDownloadNumbers = true
         publish = true
         version {
-            name = "1.3.4"
+            name = "1.3.6"
             gpg {
                 sign = true
                 passphrase = properties.getProperty("bintray.gpg.password")
