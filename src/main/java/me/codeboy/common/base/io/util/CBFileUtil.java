@@ -11,14 +11,15 @@ import java.util.List;
  * @author Yuedong Li
  */
 public class CBFileUtil {
-    private final static String DEFAULT_CHARSET= "UTF-8"; //默认编码
+    private final static String DEFAULT_CHARSET = "UTF-8"; //默认编码
 
     /**
      * 获取工程目录
+     *
      * @return dir
      */
-    public static String getProjectPath(){
-        return  new File("").getAbsolutePath();
+    public static String getProjectPath() {
+        return new File("").getAbsolutePath();
     }
 
     /**
@@ -144,27 +145,40 @@ public class CBFileUtil {
     }
 
     /**
-     * 按照UTF-8编码得到输入流字节内容
+     * 按照UTF-8编码得到文件内容
+     *
      * @param file 文件
      * @return 字节数组
      * @throws IOException io exception
      */
-    public static byte[] getFileByteContent(File file) throws IOException{
-        return getFileByteContent(new FileInputStream(file),DEFAULT_CHARSET);
+    public static byte[] getFileByteContent(File file) throws IOException {
+        return getFileByteContent(new FileInputStream(file), DEFAULT_CHARSET);
+    }
+
+    /**
+     * 按照UTF-8编码获取输入流字节内容
+     *
+     * @param is 输入流
+     * @return 字节数组
+     * @throws IOException io exception
+     */
+    public static byte[] getFileByteContent(InputStream is) throws IOException {
+        return getFileByteContent(is, DEFAULT_CHARSET);
     }
 
     /**
      * 按照指定编码获取输入流字节内容
-     * @param is 输入流
+     *
+     * @param is       输入流
      * @param encoding 编码
      * @return 字节数组
      * @throws IOException io exception
      */
-    public static byte[] getFileByteContent(InputStream is, String encoding) throws IOException{
+    public static byte[] getFileByteContent(InputStream is, String encoding) throws IOException {
         byte[] buffer = new byte[1024];
         int len;
         ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-        while((len = is.read(buffer)) != -1){
+        while ((len = is.read(buffer)) != -1) {
             outputStream.write(buffer, 0, len);
         }
         outputStream.close();
@@ -186,7 +200,11 @@ public class CBFileUtil {
             content.append('\n');
             content.append(line);
         }
-        return content.substring(1).toString();
+        if (content.length() > 0) {
+            return content.substring(1);
+        } else {
+            return "";
+        }
     }
 
     /**
@@ -206,7 +224,7 @@ public class CBFileUtil {
      *
      * @param content  文件内容
      * @param filePath 文件路径
-     * @param append 是否追加
+     * @param append   是否追加
      * @throws IOException io exception
      */
     public static void saveContentToFile(String content, String filePath, boolean append)
@@ -231,7 +249,7 @@ public class CBFileUtil {
      *
      * @param content 文件内容
      * @param file    文件
-     * @param append 是否追加
+     * @param append  是否追加
      * @throws IOException io exception
      */
     public static void saveContentToFile(String content, File file, boolean append)
@@ -291,7 +309,7 @@ public class CBFileUtil {
      * @param content  文件内容
      * @param file     文件
      * @param encoding 编码
-     * @param append 是否追加
+     * @param append   是否追加
      * @throws IOException io exception
      */
     public static void saveContentToFile(String content, File file,

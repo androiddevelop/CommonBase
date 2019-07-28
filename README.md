@@ -9,14 +9,14 @@ CommonBase
 
 #### gradle
 
-    compile 'me.codeboy.common:base:1.3.6'
+    compile 'me.codeboy.common:base:1.3.9'
     
 #### maven 
         
      <dependency>
          <groupId>me.codeboy.common</groupId>
          <artifactId>base</artifactId>
-         <version>1.3.6</version>
+         <version>1.3.9</version>
      </dependency>
  
 ##  JavaDoc
@@ -95,9 +95,17 @@ CommonBase
         
 ## 更新历史
 
+- v1.3.9
+
+	修正CBFileUtil空指针问题。
+
+- v1.3.7
+
+	优化CBFileUtil获取字节流。
+	
 - v1.3.6
 
-	1.CBFile支持读取文件获取对应的byte数组；支持获取项目当前目录路径。
+	1.CBFileUtil支持读取文件获取对应的byte数组；支持获取项目当前目录路径。
 	2.CBTaskController加入同步操作。
 
 - v1.3.4

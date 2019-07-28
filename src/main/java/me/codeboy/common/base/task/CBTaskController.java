@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock;
 
 /**
  * 任务控制器
- * Created by YD on 1/18/16.
+ * Created by yuedong.li  on 1/18/16.
  */
 public class CBTaskController {
     private int maxTaskNumber = 5; //最大任务数目

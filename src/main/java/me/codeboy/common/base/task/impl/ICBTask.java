@@ -4,7 +4,7 @@ import me.codeboy.common.base.task.listener.CBTaskListener;
 
 /**
  * 任务接口
- * Created by YD on 1/18/16.
+ * Created by yuedong.li  on 1/18/16.
  */
 public interface ICBTask {
     void startTask();  //启动任务

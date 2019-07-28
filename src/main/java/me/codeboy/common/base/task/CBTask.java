@@ -6,7 +6,7 @@ import me.codeboy.common.base.task.listener.CBTaskListener;
 
 /**
  * 任务
- * Created by YD on 1/18/16.
+ * Created by yuedong.li  on 1/18/16.
  */
 abstract public class CBTask extends Thread implements ICBTask {
     private volatile boolean stopSign = false;
